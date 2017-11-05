@@ -1,13 +1,12 @@
-[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/callemall/material-ui/tree/v1-beta/examples/nextjs)
-# Next.js example
+# Next.js + Material-UI example
 
 ## How to use
 
-Download the example [or clone the repo](https://github.com/callemall/material-ui):
+Download the example or clone the repo:
 
 ```bash
-curl https://codeload.github.com/callemall/material-ui/tar.gz/v1-beta | tar -xz --strip=2  material-ui-1-beta/examples/nextjs
-cd nextjs
+git clone https://github.com/a-sep/KimsListe-2.0.git
+cd KimsListe-2.0
 ```
 
 Install it and run:
@@ -20,3 +19,4 @@ npm run dev
 ## The idea behind the example
 
 [Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
+[Material-UI](https://github.com/callemall/material-ui/tree/v1-beta) is a set of React components that implement Google's Material Design specification.
