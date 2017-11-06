@@ -13,10 +13,12 @@ import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../components/withRoot';
 
+import ButtonAppBar from '../components/ButtonAppBar';
+
 const styles = {
   root: {
     textAlign: 'center',
-    paddingTop: 200,
+    // paddingTop: 200,
   },
 };
 
@@ -40,6 +42,7 @@ class Index extends Component {
   render() {
     return (
       <div className={this.props.classes.root}>
+        <ButtonAppBar />
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
