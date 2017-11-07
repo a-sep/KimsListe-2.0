@@ -14,6 +14,7 @@ import { withStyles } from 'material-ui/styles';
 import withRoot from '../components/withRoot';
 
 import ButtonAppBar from '../components/ButtonAppBar';
+import base from '../components/base';
 
 const styles = {
   root: {

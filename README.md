@@ -9,6 +9,8 @@ git clone https://github.com/a-sep/KimsListe-2.0.git
 cd KimsListe-2.0
 ```
 
+Copy `components/base.example.js` to `components/base.js` and fill in your config details.
+
 Install it and run:
 
 ```bash
