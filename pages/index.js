@@ -24,9 +24,13 @@ const styles = {
 };
 
 class Index extends Component {
-  state = {
-    open: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      open: false,
+      cncProducts: [],
+    };
+  }
 
   handleRequestClose = () => {
     this.setState({
@@ -40,7 +44,23 @@ class Index extends Component {
     });
   };
 
+  componentDidMount = () => {
+    base.syncState(`cncProducts`, {
+      context: this, // what object the state is on
+      state: 'cncProducts', // which property to sync
+      asArray: true,
+    });
+  };
+  addItem = newItem => {
+    this.setState({
+      cncProducts: this.state.cncProducts.concat([newItem]), //updates Firebase and the local state
+    });
+  };
+
   render() {
+    const cncProducts = this.state.cncProducts;
+    const listItems = cncProducts.map(part => <li>{part.partName}</li>);
+
     return (
       <div className={this.props.classes.root}>
         <ButtonAppBar />
@@ -64,6 +84,7 @@ class Index extends Component {
         <Button raised color="accent" onClick={this.handleClick}>
           Super Secret Password
         </Button>
+        <ul>{listItems}</ul>
       </div>
     );
   }
