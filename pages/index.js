@@ -14,7 +14,8 @@ import { withStyles } from 'material-ui/styles';
 import withRoot from '../components/withRoot';
 
 import ButtonAppBar from '../components/ButtonAppBar';
-import base from '../components/base';
+import CncProductsList from '../components/CncProductsList';
+import SignIn from '../components/SignIn';
 
 const styles = {
   root: {
@@ -28,7 +29,7 @@ class Index extends Component {
     super();
     this.state = {
       open: false,
-      cncProducts: [],
+      uid: true,
     };
   }
 
@@ -44,26 +45,26 @@ class Index extends Component {
     });
   };
 
-  componentDidMount = () => {
-    base.syncState(`cncProducts`, {
-      context: this, // what object the state is on
-      state: 'cncProducts', // which property to sync
-      asArray: true,
-    });
+  signedIn = () => {
+    return this.state.uid;
   };
-  addItem = newItem => {
-    this.setState({
-      cncProducts: this.state.cncProducts.concat([newItem]), //updates Firebase and the local state
-    });
+
+  handleAuth = () => {
+    this.setState({ uid: 'dstrus' });
+  };
+
+  signOut = () => {
+    this.setState({ uid: null });
   };
 
   render() {
-    const cncProducts = this.state.cncProducts;
-    const listItems = cncProducts.map(part => <li>{part.partName}</li>);
-
     return (
       <div className={this.props.classes.root}>
-        <ButtonAppBar />
+        <ButtonAppBar
+          handleAuth={this.handleAuth}
+          signOut={this.signOut}
+          signedIn={this.signedIn()}
+        />
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
@@ -84,7 +85,7 @@ class Index extends Component {
         <Button raised color="accent" onClick={this.handleClick}>
           Super Secret Password
         </Button>
-        <ul>{listItems}</ul>
+        {this.signedIn() ? <CncProductsList /> : <SignIn handleAuth={this.handleAuth} />}
       </div>
     );
   }

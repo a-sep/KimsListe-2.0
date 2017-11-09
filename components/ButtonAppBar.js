@@ -22,8 +22,20 @@ const styles = theme => ({
   },
 });
 
-function ButtonAppBar(props) {
+const ButtonAppBar = (props) => {
   const { classes } = props;
+  let button = (
+    <Button color="contrast" onClick={props.handleAuth}>
+      Sign In
+    </Button>
+  );
+  if (props.signedIn) {
+    button = (
+      <Button color="contrast" onClick={props.signOut}>
+        Sign Out
+      </Button>
+    );
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -34,15 +46,18 @@ function ButtonAppBar(props) {
           <Typography type="title" color="inherit" className={classes.flex}>
             Kim's Liste
           </Typography>
-          <Button color="contrast">Login</Button>
+          {button}
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
 
 ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  signOut: PropTypes.func.isRequired,
+  handleAuth: PropTypes.func.isRequired,
+  signedIn: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(ButtonAppBar);

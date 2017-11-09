@@ -1,3 +1,4 @@
+# coding in progress :)
 # Next.js + Material-UI example
 
 ## How to use
