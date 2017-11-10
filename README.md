@@ -1,5 +1,5 @@
-# coding in progress :)
-# Next.js + Material-UI example
+# coding in progress... :)
+# React + Material-UI
 
 ## How to use
 
@@ -16,10 +16,10 @@ Install it and run:
 
 ```bash
 npm install
-npm run dev
+npm run start
 ```
 
 ## The idea behind the example
 
-[Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
+[React](https://reactjs.org) A JavaScript library for building user interfaces.
 [Material-UI](https://github.com/callemall/material-ui/tree/v1-beta) is a set of React components that implement Google's Material Design specification.
