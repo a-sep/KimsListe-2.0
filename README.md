@@ -8,6 +8,7 @@ Download code [or clone the repo](https://github.com/a-sep/KimsListe-2.0.git):
 ```bash
 cd KimsListe-2.0
 ```
+Copy `src/base.example.js` to `src/base.js` and fill in your firebase config data. 
 
 Install it and run:
 
