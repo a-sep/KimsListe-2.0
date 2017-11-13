@@ -1,12 +1,12 @@
+coding in progress...
 # Create React App example
 
 ## How to use
 
-Download the example [or clone the repo](https://github.com/callemall/material-ui):
+Download code [or clone the repo](https://github.com/a-sep/KimsListe-2.0.git):
 
 ```bash
-curl https://codeload.github.com/callemall/material-ui/tar.gz/v1-beta | tar -xz --strip=2 material-ui-1-beta/examples/create-react-app
-cd create-react-app
+cd KimsListe-2.0
 ```
 
 Install it and run:
@@ -19,3 +19,7 @@ npm run start
 ## The idea behind the example
 
 [Create React App](https://github.com/facebookincubator/create-react-app) with no build configuration.
+
+[Material-UI](https://github.com/callemall/material-ui/tree/v1-beta) is a set of React components that implement Google's Material Design specification.
+
+[re-base](https://github.com/tylermcginnis/re-base) combines the benefits of React and Firebase by allowing each component to specify its own data dependency. 
