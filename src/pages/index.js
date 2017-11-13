@@ -12,11 +12,12 @@ import Dialog, {
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../components/withRoot';
+import App from '../components/App';
 
 const styles = {
   root: {
     textAlign: 'center',
-    paddingTop: 200,
+    paddingTop: 50,
   },
 };
 
@@ -60,6 +61,7 @@ class Index extends Component {
         <Button raised color="accent" onClick={this.handleClick}>
           Super Secret Password
         </Button>
+        <App />
       </div>
     );
   }
