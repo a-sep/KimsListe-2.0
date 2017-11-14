@@ -22,4 +22,4 @@ yarn-error.log*
 
 yarn.lock
 
-base.js
+.env

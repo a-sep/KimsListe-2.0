@@ -8,7 +8,7 @@ Download code [or clone the repo](https://github.com/a-sep/KimsListe-2.0.git):
 ```bash
 cd KimsListe-2.0
 ```
-Copy `src/base.example.js` to `src/base.js` and fill in your firebase config data. 
+Copy `example.env` to `.env` in root directory and fill in your firebase config data. 
 
 Install it and run:
 
@@ -23,4 +23,3 @@ npm run start
 
 [Material-UI](https://github.com/callemall/material-ui/tree/v1-beta) is a set of React components that implement Google's Material Design specification.
 
-[re-base](https://github.com/tylermcginnis/re-base) combines the benefits of React and Firebase by allowing each component to specify its own data dependency. 
