@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
-import base from '../base';
+import * as firebase from 'firebase';
 
 const styles = {
   root: {
@@ -13,32 +13,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      seconds: 0,
       cncProducts: [],
       loading: true,
     };
   }
 
   componentDidMount() {
-    // this.interval = setInterval(() => this.tick(), 1000);
-    base.syncState('cncProducts', {
-      context: this,
-      state: 'cncProducts',
-      asArray: true,
-      then() {
-        this.setState({ loading: false });
+    const db = firebase.database();
+    const cncRef = db.ref().child('cncProducts');
+    console.log('snap z bazy ', cncRef);
+    cncRef.on(
+      'value',
+      (snapshot) => {
+        console.log(snapshot.val());
+        this.setState({
+          cncProducts: Object.values(snapshot.val()),
+          loading: false,
+        });
       },
-    });
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  tick() {
-    this.setState(prevState => ({
-      seconds: prevState.seconds + 1,
-    }));
+      (errorObject) => {
+        console.log(`The read failed: ${errorObject.code}`);
+      },
+    );
   }
 
   render() {
@@ -52,5 +48,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// Seconds: {this.state.seconds}

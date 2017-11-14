@@ -1,5 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
@@ -15,6 +13,8 @@ import withRoot from '../components/withRoot';
 
 import App from '../components/App';
 import ButtonAppBar from '../components/ButtonAppBar';
+import SignIn from '../components/SignIn';
+import * as firebase from 'firebase';
 
 const styles = {
   root: {
@@ -24,9 +24,13 @@ const styles = {
 };
 
 class Index extends Component {
-  state = {
-    open: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      uid: null,
+    };
+  }
 
   handleRequestClose = () => {
     this.setState({
@@ -40,10 +44,43 @@ class Index extends Component {
     });
   };
 
+  signedIn = () => {
+    return this.state.uid;
+  };
+
+  handleAuth = () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(googleProvider)
+      .then(result => {
+        this.setState({ uid: result.user.uid });
+      })
+      .catch(err => console.error(err));
+  };
+
+  signOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(
+        // Sign-out successful.
+        () => this.setState({ uid: null }),
+      )
+      .catch(error => {
+        // An error happened.
+        console.log(error);
+      });
+  };
+
   render() {
     return (
       <div className={this.props.classes.root}>
-        <ButtonAppBar />
+        <ButtonAppBar
+          signedIn={this.signedIn}
+          handleAuth={this.handleAuth}
+          signOut={this.signOut}
+        />
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
@@ -56,13 +93,19 @@ class Index extends Component {
           </DialogActions>
         </Dialog>
 
-        <Typography type="subheading" gutterBottom>
-          example project
-        </Typography>
         <Button raised color="accent" onClick={this.handleClick}>
           Super Secret Password
         </Button>
-        <App />
+        {this.signedIn() ? (
+          <App />
+        ) : (
+          <Typography type="subheading" gutterBottom>
+            You have to be signed in...
+            <Button raised color="accent" onClick={this.handleAuth}>
+              Sign In
+            </Button>
+          </Typography>
+        )}
       </div>
     );
   }
