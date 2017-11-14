@@ -35,7 +35,16 @@ function ButtonAppBar(props) {
           <Typography type="title" color="inherit" className={classes.flex}>
             Kim's Liste
           </Typography>
-          <Button color="contrast">Login</Button>
+
+          {props.signedIn() ? (
+            <Button color="contrast" onClick={props.signOut}>
+              Sign Out
+            </Button>
+          ) : (
+            <Button color="contrast" onClick={props.handleAuth}>
+              Sign In
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>
@@ -44,6 +53,9 @@ function ButtonAppBar(props) {
 
 ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  signedIn: PropTypes.func.isRequired,
+  handleAuth: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ButtonAppBar);

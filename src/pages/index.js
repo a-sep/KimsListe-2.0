@@ -15,6 +15,7 @@ import withRoot from '../components/withRoot';
 
 import App from '../components/App';
 import ButtonAppBar from '../components/ButtonAppBar';
+import SignIn from '../components/SignIn';
 
 const styles = {
   root: {
@@ -26,6 +27,7 @@ const styles = {
 class Index extends Component {
   state = {
     open: false,
+    uid: null,
   };
 
   handleRequestClose = () => {
@@ -40,10 +42,26 @@ class Index extends Component {
     });
   };
 
+  signedIn = () => {
+    return this.state.uid;
+  };
+
+  handleAuth = () => {
+    this.setState({ uid: 'dstrus' });
+  };
+
+  signOut = () => {
+    this.setState({ uid: null });
+  };
+
   render() {
     return (
       <div className={this.props.classes.root}>
-        <ButtonAppBar />
+        <ButtonAppBar
+          signedIn={this.signedIn}
+          handleAuth={this.handleAuth}
+          signOut={this.signOut}
+        />
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
@@ -62,7 +80,7 @@ class Index extends Component {
         <Button raised color="accent" onClick={this.handleClick}>
           Super Secret Password
         </Button>
-        <App />
+        {this.signedIn() ? <App /> : <SignIn handleAuth={this.handleAuth} />}
       </div>
     );
   }
